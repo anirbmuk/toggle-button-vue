@@ -4,7 +4,7 @@
       <button
         type="button"
         :class="{ selected: modelValue === option.value }"
-        @click="toggleState(option.value)"
+        @click="$emit('update:model-value', option.value)"
       >
         {{ option.label }}
       </button>
@@ -26,13 +26,9 @@ defineProps({
     required: true
   }
 })
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:model-value', value: string): void
 }>()
-
-const toggleState = (value: string) => {
-  emit('update:model-value', value)
-}
 
 defineOptions({
   name: 'ToggleButton'
